@@ -17,7 +17,7 @@ public class Solve {
     public static void main(String[] args) {
         Solver s;
         
-
+/*
         Integer[][] board ={
             { 8, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 3, 6, 0, 0, 0, 0, 0 },
@@ -45,25 +45,25 @@ public class Solve {
     */
 /*
         Integer [][]board ={
-            {0,2,4,0},
-            {1,0,0,3},
-            {4,0,0,2},
-            {0,1,3,0} 
+            {null,2,4,null},
+            {1,null,null,3},
+            {4,null,null,2},
+            {null,1,3,null} 
         };
     */
-/*
+
 Integer[][] board ={
-{ 5, 0, 4, 3, 0, 6, 0, 7, 0 },
-{ 0, 0, 1, 0, 0, 0, 0, 0, 0 },
-{ 0, 7, 6, 0, 0, 2, 9, 0, 0 },
-{ 0, 8, 0, 7, 0, 5, 6, 0, 1 },
-{ 7, 6, 0, 0, 3, 0, 0, 8, 9 },
-{ 9, 0, 3, 8, 0, 4, 0, 2, 0 },
-{ 0, 0, 8, 1, 0, 0, 2, 9, 0 },
-{ 0, 0, 0, 0, 0, 0, 3, 0, 0 },
-{ 0, 3, 0, 4, 0, 7, 1, 0, 6 }
+{ 5, null, 4, 3, null, 6, null, 7, null },
+{ null, null, 1, null, null, null, null, null, null },
+{ null, 7, 6, null, null, 2, 9, null, null },
+{ null, 8, null, 7, null, 5, 6, null, 1 },
+{ 7, 6, null, null, 3, null, null, 8, 9 },
+{ 9, null, 3, 8, null, 4, null, 2, null },
+{ null, null, 8, 1, null, null, 2, 9, null },
+{ null, null, null, null, null, null, 3, null, null },
+{ null, 3, null, 4, null, 7, 1, null, 6 }
 };
-*/
+
         s=new Solver(board);
         System.out.println(s.toString());
         System.out.println("\n");

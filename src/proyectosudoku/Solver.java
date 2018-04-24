@@ -20,7 +20,6 @@ public class Solver {
     private ConjuntoA<Integer>[][] sets;
     private int sqrSize;
     private int lastCell;
-    private final Integer NO_VALUE=0;
     
     public Solver(Integer[][] mat){
         sudoku=mat;
@@ -54,7 +53,7 @@ public class Solver {
         while(res && i<size*size){
             row=i/size;
             col=i%size;
-            if(!sudoku[row][col].equals(NO_VALUE)){
+            if(sudoku[row][col]!=null){
                 res=sets[0][row].agrega(sudoku[row][col]);
                 res=res && sets[1][col].agrega(sudoku[row][col]);
                 res=res && sets[2][col/sqrSize + (row/sqrSize)*sqrSize].agrega(sudoku[row][col]);    // se divide y se multiplica por el mismo numero para redondear al multiplo de SQR_SIZE mas cercano
@@ -87,6 +86,14 @@ public class Solver {
         }
         return res;
     }
+    /**
+     * 
+     * @param num   Índice de la última celda no restringida del sudoku dado
+     * @return <ul>
+     *  <li> False: si el sudoku está sobrerrestringido
+     *  <li> True: si el sudoku tiene al menos una solución
+     *  </ul>
+     */
     private boolean solve(int num){
         int row=num/size;
         int col=num%size;
@@ -100,7 +107,7 @@ public class Solver {
         else{
             if(!input[row][col]){
                 res=sudoku[row][col];
-                if(res.equals(NO_VALUE)){
+                if(res==null){
                     res=size;
                 }else{
                     sets[0][row].quita(res);
@@ -119,7 +126,7 @@ public class Solver {
                     //print();  //para pruebas
                     return solve(num-1);
                 }else{
-                    sudoku[row][col]=NO_VALUE;
+                    sudoku[row][col]=null;
                     //print();  //para pruebas
                     return solve(goBack(num+1));
                 }
@@ -128,6 +135,12 @@ public class Solver {
                 return solve(num-1);
         }
     }
+    /**
+     * 
+     * @param num   El índice de la celda para iniciar la búsqueda
+     * @return El índice de la siguiente celda del sudoku no restringida por el usuario
+     * @throws NoSuchElementException en caso de recibir un índice mayor al de la última celda
+     */
     private int goBack(int num){
         int row=num/size;
         int col=num%size;
@@ -138,7 +151,7 @@ public class Solver {
             else
                 return goBack(num+1);
         }
-        throw new NoSuchElementException("Valio barriga, señor Vergas.");
+        throw new NoSuchElementException();
     }
     
     
