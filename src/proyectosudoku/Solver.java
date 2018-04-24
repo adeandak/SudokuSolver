@@ -71,8 +71,9 @@ public class Solver {
                 row=i/size;
                 col=i%size;
             }while(input[row][col]==1);
-            if(solve(i));
+            if(solve(i))
                 res="NICE TRY";
+            print();
         }
         return res;
     }
@@ -105,11 +106,11 @@ public class Solver {
                     sets[0][row].agrega(res);
                     sets[1][col].agrega(res);
                     sets[2][sec].agrega(res);
-                    print();
+                    //print();
                     return solve(num-1);
                 }else{
                     sudoku[row][col]=NO_VALUE;
-                    print();
+                    //print();
                     return solve(goBack(num+1));
                 }
             }
