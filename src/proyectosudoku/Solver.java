@@ -31,6 +31,15 @@ public class Solver {
         sets=new ConjuntoA[3][size];
     }
     
+    public void setSudoku(Integer[][] mat){
+        sudoku=mat;
+        size=sudoku.length;
+        sqrSize=(int)Math.sqrt(size);
+        lastCell=size*size;
+        input=new int[size][size];
+        sets=new ConjuntoA[3][size];
+    }
+    
     private boolean newSudoku(){
         int row;
         int col;
@@ -65,6 +74,7 @@ public class Solver {
         int row;
         int col;
         String res="ERROR";
+        
         if(newSudoku()){
             do{
                 i--;
@@ -73,7 +83,7 @@ public class Solver {
             }while(input[row][col]==1);
             if(solve(i))
                 res="NICE TRY";
-            print();
+            //print();  //para pruebas
         }
         return res;
     }
@@ -106,11 +116,11 @@ public class Solver {
                     sets[0][row].agrega(res);
                     sets[1][col].agrega(res);
                     sets[2][sec].agrega(res);
-                    //print();
+                    //print();  //para pruebas
                     return solve(num-1);
                 }else{
                     sudoku[row][col]=NO_VALUE;
-                    //print();
+                    //print();  //para pruebas
                     return solve(goBack(num+1));
                 }
             }
@@ -146,6 +156,7 @@ public class Solver {
         return cad.toString();
     }
     
+    //métodos para realizar pruebas
     private void print(){
         for(Integer[] c:sudoku)
             System.out.println(Arrays.toString(c));

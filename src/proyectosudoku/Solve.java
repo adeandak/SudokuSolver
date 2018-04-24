@@ -65,8 +65,10 @@ public class Solve {
 };*/
 
         s=new Solver(board);
-        //System.out.println(s.toString());
+        System.out.println(s.toString());
+        System.out.println("\n");
         System.out.println(s.solve());
         System.out.println("\n");
+        System.out.println(s.toString());
     } 
 }
