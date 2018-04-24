@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
  */
 public class Solver {
     private Integer[][] sudoku;
-    private int[][] input;
+    private boolean[][] input;
     private int size;
     private ConjuntoA<Integer>[][] sets;
     private int sqrSize;
@@ -27,7 +27,7 @@ public class Solver {
         size=sudoku.length;
         sqrSize=(int)Math.sqrt(size);
         lastCell=size*size;
-        input=new int[size][size];
+        input=new boolean[size][size];
         sets=new ConjuntoA[3][size];
     }
     
@@ -36,7 +36,7 @@ public class Solver {
         size=sudoku.length;
         sqrSize=(int)Math.sqrt(size);
         lastCell=size*size;
-        input=new int[size][size];
+        input=new boolean[size][size];
         sets=new ConjuntoA[3][size];
     }
     
@@ -58,7 +58,7 @@ public class Solver {
                 res=sets[0][row].agrega(sudoku[row][col]);
                 res=res && sets[1][col].agrega(sudoku[row][col]);
                 res=res && sets[2][col/sqrSize + (row/sqrSize)*sqrSize].agrega(sudoku[row][col]);    // se divide y se multiplica por el mismo numero para redondear al multiplo de SQR_SIZE mas cercano
-                input[row][col]=1;
+                input[row][col]=true;
             }
             i++;
         }
@@ -73,14 +73,14 @@ public class Solver {
         int i=lastCell;
         int row;
         int col;
-        String res="ERROR";
+        String res="El tablero está sobrerrestringido.";
         
         if(newSudoku()){
             do{
                 i--;
                 row=i/size;
                 col=i%size;
-            }while(input[row][col]==1);
+            }while(input[row][col]);
             if(solve(i))
                 res="NICE TRY";
             //print();  //para pruebas
@@ -98,7 +98,7 @@ public class Solver {
         else if(num>=lastCell)
             return false;
         else{
-            if(input[row][col]!=1){
+            if(!input[row][col]){
                 res=sudoku[row][col];
                 if(res.equals(NO_VALUE)){
                     res=size;
@@ -133,7 +133,7 @@ public class Solver {
         int col=num%size;
         
         if(num<lastCell){
-            if(input[row][col]!=1)
+            if(!input[row][col])
                 return num;
             else
                 return goBack(num+1);
