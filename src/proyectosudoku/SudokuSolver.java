@@ -131,6 +131,7 @@ public class SudokuSolver extends javax.swing.JFrame {
     private void clearButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButActionPerformed
         for(int i=0;i<81;i++)
             sudokuTab.setValueAt(null, i/9, i%9);
+        infoLbl.setText("");
     }//GEN-LAST:event_clearButActionPerformed
 
     private void solvButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solvButActionPerformed

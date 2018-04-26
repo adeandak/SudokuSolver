@@ -144,21 +144,21 @@ public class Solver {
      * 
      * @return <ul>
      *  <li> "NICE TRY"; si el sudoku se resolvió correctamente.
-     *  <li> "El tablero está sobrerrestringido o contiene números incorrectos."
+     *  <li> "Tablero incorrecto."
      *  </ul>
      */
     public String solve(){
         int i=lastCell;
         int row;
         int col;
-        String res="El tablero está sobrerrestringido o contiene números incorrectos.";
+        String res="Tablero incorrecto.";
         
         if(newSudoku()){
             do{
                 i--;
                 row=i/size;
                 col=i%size;
-            }while(input[row][col]);
+            }while(i>=0 && input[row][col]);
             if(solve(i))
                 res="NICE TRY";
             //print();  //para pruebas
@@ -230,7 +230,7 @@ public class Solver {
             else
                 return goBack(num+1);
         }
-        throw new NoSuchElementException();
+        return num;
     }
     
     @Override
