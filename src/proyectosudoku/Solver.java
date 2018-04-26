@@ -218,7 +218,6 @@ public class Solver {
      * 
      * @param num   El índice de la celda para iniciar la búsqueda
      * @return El índice de la siguiente celda del sudoku no restringida por el usuario
-     * @throws NoSuchElementException en caso de recibir un índice mayor al de la última celda
      */
     private int goBack(int num){
         int row=num/size;
