@@ -17,8 +17,8 @@ public class ProyectoSudoku {
     public static void main(String[] args) throws IncorrectBoardException {
         Solver s;
         
-/*
-        Integer[][] board ={
+
+        int[][] board ={
             { 8, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 3, 6, 0, 0, 0, 0, 0 },
             { 0, 7, 0, 0, 9, 0, 2, 0, 0 },
@@ -43,28 +43,29 @@ public class ProyectoSudoku {
             {7 ,9 ,6 ,3 ,1 ,8 ,4 ,5 ,2}
         };
     */
+
 /*
-        Integer [][]board ={
-            {null,2,4,null},
-            {1,null,null,3},
-            {4,null,null,2},
-            {null,1,3,null} 
+        int [][]board ={
+            {0,2,4,0},
+            {1,0,0,3},
+            {4,0,0,2},
+            {0,1,3,0} 
         };
     */
 
-Integer[][] board ={
-{ 5, null, 4, 3, null, 6, null, 7, null },
-{ null, null, 1, null, null, null, null, null, null },
-{ null, 7, 6, null, null, 2, 9, null, null },
-{ null, 8, null, 7, null, 5, 6, null, 1 },
-{ 7, 6, null, null, 3, null, null, 8, 9 },
-{ 9, null, 3, 8, null, 4, null, 2, null },
-{ null, null, 8, 1, null, null, 2, 9, null },
-{ null, null, null, null, null, null, 3, null, null },
-{ null, 3, null, 4, null, 7, 1, null, 6 }
+int[][] board2 ={
+{ 7, 0, 0, 1, 0, 8, 0, 0, 0 },
+{ 0, 9, 0, 0, 0, 0, 0, 3, 2 },
+{ 0, 0, 0, 0, 0, 5, 0, 0, 0 },
+{ 0, 0, 0, 0, 0, 0, 1, 0, 0 },
+{ 9, 6, 0, 0, 2, 0, 0, 0, 0 },
+{ 0, 0, 0, 0, 0, 0, 8, 0, 0 },
+{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+{ 0, 0, 5, 0, 0, 1, 0, 0, 0 },
+{ 3, 2, 0, 0, 0, 0, 0, 0, 6 }
 };
 
-        s=new Solver(board);
+        s=new Solver(board2);
         System.out.println(s.toString());
         System.out.println("\n");
         System.out.println(s.solve());

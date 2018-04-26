@@ -33,11 +33,11 @@ public class SolverTest {
     @Test
     public void testSetSudoku() throws Exception {
         System.out.println("setSudoku");
-        Integer[][] mat ={
-            {null,2,4,null},
-            {1,null,null,3},
-            {4,null,null,2},
-            {null,1,3,null} 
+        int[][] mat ={
+            {0,2,4,0},
+            {1,0,0,3},
+            {4,0,0,2},
+            {0,1,3,0} 
         };
         Solver instance = new Solver(mat);
         instance.setSudoku(mat);
@@ -51,20 +51,20 @@ public class SolverTest {
     @Test
     public void testGetSudoku() throws IncorrectBoardException {
         System.out.println("getSudoku");
-        Integer[][] mat ={
-            {null,2,4,null},
-            {1,null,null,3},
-            {4,null,null,2},
-            {null,1,3,null} 
+        int[][] mat ={
+            {0,2,4,0},
+            {1,0,0,3},
+            {4,0,0,2},
+            {0,1,3,0} 
         };
         Solver instance = new Solver(mat);
-        Integer[][] expResult = {
-            {null,2,4,null},
-            {1,null,null,3},
-            {4,null,null,2},
-            {null,1,3,null} 
+        int[][] expResult ={
+            {0,2,4,0},
+            {1,0,0,3},
+            {4,0,0,2},
+            {0,1,3,0} 
         };
-        Integer[][] result = instance.getSudoku();
+        int[][] result = instance.getSudoku();
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -76,11 +76,11 @@ public class SolverTest {
     @Test
     public void testSolve() throws IncorrectBoardException {
         System.out.println("solve");
-        Integer[][] mat ={
-            {null,2,4,null},
-            {1,null,null,3},
-            {4,null,null,2},
-            {null,1,3,null} 
+        int[][] mat ={
+            {0,2,4,0},
+            {1,0,0,3},
+            {4,0,0,2},
+            {0,1,3,0} 
         };
         Solver instance = new Solver(mat);
         String expResult = "NICE TRY";

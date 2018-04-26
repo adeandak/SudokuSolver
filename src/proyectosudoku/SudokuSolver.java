@@ -6,8 +6,7 @@
 package proyectosudoku;
 
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.lang.StackOverflowError;
 
 /**
  *
@@ -38,6 +37,7 @@ public class SudokuSolver extends javax.swing.JFrame {
         infoLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         sudokuTab.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         sudokuTab.setModel(new javax.swing.table.DefaultTableModel(
@@ -103,7 +103,7 @@ public class SudokuSolver extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(solvBut, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                    .addComponent(solvBut, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .addComponent(clearBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(infoLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -135,14 +135,15 @@ public class SudokuSolver extends javax.swing.JFrame {
     }//GEN-LAST:event_clearButActionPerformed
 
     private void solvButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solvButActionPerformed
-        Integer[][] board=new Integer[9][9];
+        int[][] board=new int[9][9];
         Solver s;
         int row,col;
         
         for(int i=0;i<81;i++){
             row=i/9;
             col=i%9;
-            board[row][col]=(Integer) sudokuTab.getValueAt(row, col);
+            if(sudokuTab.getValueAt(row, col)!=null)
+                board[row][col]=(Integer) sudokuTab.getValueAt(row, col);
         }
         try{
             s=new Solver(board);
@@ -152,8 +153,8 @@ public class SudokuSolver extends javax.swing.JFrame {
                 col=j%9;
                 sudokuTab.setValueAt(board[row][col], row, col);
             }
-        }catch (IncorrectBoardException ex) {
-            infoLbl.setText(ex.getMessage());
+        }catch (IncorrectBoardException | StackOverflowError ex) {
+            infoLbl.setText("La solución excede la capacidad de la memoria.");
         }
         
     }//GEN-LAST:event_solvButActionPerformed

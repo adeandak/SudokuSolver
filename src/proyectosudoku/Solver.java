@@ -2,7 +2,6 @@ package proyectosudoku;
 
 import auxiliares.ConjuntoA;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 /**
  *<pre>
@@ -26,7 +25,7 @@ import java.util.NoSuchElementException;
  * @author SLGA
  */
 public class Solver {
-    private Integer[][] sudoku;
+    private int[][] sudoku;
     private boolean[][] input;
     private int size;
     private ConjuntoA<Integer>[][] sets;
@@ -38,7 +37,7 @@ public class Solver {
      * @param mat Sudoku a resolver.
      * @throws proyectosudoku.IncorrectBoardException   En caso de que se reciba un tablero inválido.
      */
-    public Solver(Integer[][] mat) throws IncorrectBoardException{
+    public Solver(int[][] mat) throws IncorrectBoardException{
         if(mat==null || mat.length%((int) Math.sqrt(mat.length))!=0 || mat.length!=mat[0].length)
             throw new IncorrectBoardException("Las dimensiones del tablero no son correctas.");
         sudoku=mat;
@@ -54,7 +53,7 @@ public class Solver {
      * @param mat Siguiente tablero de sudoku a resolver.
      * @throws proyectosudoku.IncorrectBoardException   En caso de que se reciba un tablero inválido.
      */
-    public void setSudoku(Integer[][] mat) throws IncorrectBoardException{
+    public void setSudoku(int[][] mat) throws IncorrectBoardException{
         if(mat==null || mat.length%((int) Math.sqrt(mat.length))!=0 || mat.length!=mat[0].length)
             throw new IncorrectBoardException("Las dimensiones del tablero no son correctas.");
         sudoku=mat;
@@ -69,7 +68,7 @@ public class Solver {
      * 
      * @return La matriz que representa al tablero.
      */
-    public Integer[][] getSudoku() {
+    public int[][] getSudoku() {
         return sudoku;
     }
     
@@ -99,7 +98,7 @@ public class Solver {
         while(res && i<size*size){
             row=i/size;
             col=i%size;
-            if(sudoku[row][col]!=null){
+            if(sudoku[row][col]!=0){
                 inf=sudoku[row][col];
                 res=inf>0 && inf<=size;
                 if(res){
@@ -186,7 +185,7 @@ public class Solver {
         else{
             if(!input[row][col]){   //la celda no está restringida por el usuario
                 res=sudoku[row][col];
-                if(res==null){  //no se ha intentado ningún número en la celda
+                if(res==0){  //no se ha intentado ningún número en la celda
                     res=size;
                 }else{
                     sets[0][row].quita(res);
@@ -205,7 +204,7 @@ public class Solver {
                     //print();  //para pruebas
                     return solve(num-1);    //se pasa a la siguiente celda
                 }else{  //no hay ningún número posible para la celda dada
-                    sudoku[row][col]=null;
+                    sudoku[row][col]=0;
                     //print();  //para pruebas
                     return solve(goBack(num+1));    //se debe modificar la celda anterior no restringida
                 }
@@ -235,7 +234,7 @@ public class Solver {
     @Override
     public String toString(){
         StringBuilder cad=new StringBuilder();
-        for(Integer[] c:sudoku){
+        for(int[] c:sudoku){
             cad.append(Arrays.toString(c));
             cad.append("\n");
         }
@@ -245,7 +244,7 @@ public class Solver {
     
     //métodos para realizar pruebas
     private void print(){
-        for(Integer[] c:sudoku)
+        for(int[] c:sudoku)
             System.out.println(Arrays.toString(c));
         System.out.println("\n");
     }
