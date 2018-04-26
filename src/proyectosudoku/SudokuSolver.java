@@ -79,6 +79,11 @@ public class SudokuSolver extends javax.swing.JFrame {
         jScrollPane1.setViewportView(sudokuTab);
 
         solvBut.setText("Resolver");
+        solvBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solvButActionPerformed(evt);
+            }
+        });
 
         clearBut.setText("Limpiar");
         clearBut.addActionListener(new java.awt.event.ActionListener() {
@@ -122,8 +127,16 @@ public class SudokuSolver extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clearButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButActionPerformed
-        
+        for(int i=0;i<81;i++){
+            sudokuTab.setValueAt(null, i/9, i%9);
+        }
     }//GEN-LAST:event_clearButActionPerformed
+
+    private void solvButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solvButActionPerformed
+        Integer[][] board;
+        
+        
+    }//GEN-LAST:event_solvButActionPerformed
 
     
     /**

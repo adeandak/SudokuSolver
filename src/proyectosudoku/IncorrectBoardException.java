@@ -7,7 +7,7 @@ package proyectosudoku;
 
 /**
  *
- * @author robot
+ * @author SLGA
  */
 public class IncorrectBoardException extends Exception {
 

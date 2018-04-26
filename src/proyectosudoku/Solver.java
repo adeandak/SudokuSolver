@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectosudoku;
 
 import auxiliares.ConjuntoA;
@@ -104,7 +99,11 @@ public class Solver {
                     if(res){
                         res=sets[1][col].agrega(inf);
                         if(res){
-                            res=sets[2][col/sqrSize + (row/sqrSize)*sqrSize].agrega(inf);    // se divide y se multiplica por el mismo numero para redondear al multiplo de SQR_SIZE mas cercano
+                            res=sets[2][col/sqrSize + (row/sqrSize)*sqrSize].agrega(inf);    
+                            /*
+                            *se divide y se multiplica por el mismo numero para 
+                            *redondear al multiplo de SQR_SIZE mas cercano
+                            */
                             input[row][col]=true;
                         }
                     }
@@ -225,10 +224,6 @@ public class Solver {
         }
         throw new NoSuchElementException();
     }
-    
-    
-    
-    
     
     @Override
     public String toString(){
