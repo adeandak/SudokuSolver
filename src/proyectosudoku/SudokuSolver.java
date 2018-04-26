@@ -6,6 +6,8 @@
 package proyectosudoku;
 
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -127,14 +129,31 @@ public class SudokuSolver extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clearButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButActionPerformed
-        for(int i=0;i<81;i++){
+        for(int i=0;i<81;i++)
             sudokuTab.setValueAt(null, i/9, i%9);
-        }
     }//GEN-LAST:event_clearButActionPerformed
 
     private void solvButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solvButActionPerformed
-        Integer[][] board;
+        Integer[][] board=new Integer[9][9];
+        Solver s;
+        int row,col;
         
+        for(int i=0;i<81;i++){
+            row=i/9;
+            col=i%9;
+            board[row][col]=(Integer) sudokuTab.getValueAt(row, col);
+        }
+        try{
+            s=new Solver(board);
+            infoLbl.setText(s.solve());
+            for(int j=0;j<81;j++){
+                row=j/9;
+                col=j%9;
+                sudokuTab.setValueAt(board[row][col], row, col);
+            }
+        }catch (IncorrectBoardException ex) {
+            infoLbl.setText(ex.getMessage());
+        }
         
     }//GEN-LAST:event_solvButActionPerformed
 

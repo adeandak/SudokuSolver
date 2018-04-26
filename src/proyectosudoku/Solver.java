@@ -64,6 +64,14 @@ public class Solver {
         input=new boolean[size][size];
         sets=new ConjuntoA[3][size];
     }
+
+    /**
+     * 
+     * @return La matriz que representa al tablero.
+     */
+    public Integer[][] getSudoku() {
+        return sudoku;
+    }
     
     /**
      * 
