@@ -65,7 +65,7 @@ int[][] board2 ={
 { 3, 2, 0, 0, 0, 0, 0, 0, 6 }
 };
 
-        s=new Solver(board2);
+        s=new Solver(board);
         System.out.println(s.toString());
         System.out.println("\n");
         System.out.println(s.solve());
